@@ -1,26 +1,31 @@
 package repositories
 
 import (
+	"github.com/che-ict/DEV-DT-Microblog/models"
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 	"log"
 )
 
-var _connection *gorm.DB
+var connection *gorm.DB
 
-func _connect() {
-	_connection, err := gorm.Open(sqlite.Open("db.sqlite"))
+func connect() {
+	var err error
+	connection, err = gorm.Open(sqlite.Open("db.sqlite"))
 
 	if err != nil {
 		log.Panic(err)
 	}
 
-	_connection.AutoMigrate()
+	err = connection.AutoMigrate(&models.User{}, &models.Post{})
+	if err != nil {
+		log.Panic(err)
+	}
 }
 
 func DB() *gorm.DB {
-	if _connection == nil {
-		_connect()
+	if connection == nil {
+		connect()
 	}
-	return _connection
+	return connection
 }

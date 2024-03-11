@@ -1,0 +1,28 @@
+{{define "feed"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feed</title>
+</head>
+<body>
+
+<h2>Post maken</h2>
+<form action="/post" method="post">
+    <input type="text" name="content">
+    <input type="submit" value="Plaats">
+</form>
+
+<h2>Feed</h2>
+{{$u := .AuthenticatedUser}}
+{{range $index, $post := .Posts}}
+    <div>
+        <h3><a href="/user/{{$post.User.Username}}"> {{$post.User.DisplayName}} ({{$post.User.Username}}) </a>
+            {{ if eq $post.User.Username $u}} <a href="/delete/{{$post.ID}}">Verwijder</a> {{end}}
+        </h3>
+        <p>{{$post.Content}}</p>
+    </div>
+{{end}}
+</body>
+</html>
+{{end}}

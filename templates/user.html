@@ -1,0 +1,19 @@
+{{define "user"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gebruiker</title>
+</head>
+<body>
+
+<h2>Gebruiker</h2>
+{{$u := .AuthenticatedUser}}
+{{range $index, $post := .Posts}}
+    <div>
+        <p>{{$post.Content}}</p>
+    </div>
+{{end}}
+</body>
+</html>
+{{end}}

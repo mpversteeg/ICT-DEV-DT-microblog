@@ -1,0 +1,19 @@
+{{define "register"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registreren - Microblog</title>
+</head>
+<body>
+
+<form action="/register" method="post">
+  <input placeholder="Gebruikersnaam" type="text" name="username" id="u">
+  <input placeholder="Wachtwoord" type="password" name="password" id="p">
+  <input placeholder="Weergavenaam" type="text" name="display-name" id="display">
+  <input type="submit" value="Inloggen">
+</form>
+
+</body>
+</html>
+{{end}}
